@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "ReactDemo";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/react.js"></script>
+    <script src="~/Scripts/react-dom.js"></script>
+    <script src="~/Scripts/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <!--demo1-->
+    @*<script type="text/babel">
+        ReactDOM.render(
+            <h1>hello,react!</h1>,
+            document.getElementById("example")
+        );
+    </script>*@
+
+    <!--demo2-->
+    @*<script type="text/babel">
+        var names = ['a','b','c'];
+
+        ReactDOM.render(
+            <div>
+                {
+                    names.map(function(e){
+                        return <div>hello,{e}!</div>
+                    })
+                }
+            </div>,
+            document.getElementById("example")
+        );
+    </script>*@
+    
+    <!--demo3-->      
+    @*<script type="text/babel">
+        var HelloMessage = React.createClass({
+            render:function(){
+                return <h1>Hello {this.props.id}</h1>;
+            }
+        });
+
+        ReactDOM.render(
+           <HelloMessage id="admin"></HelloMessage>,
+            document.getElementById("example")
+        );
+    </script>*@
+
+    <!--demo4-->
+    <script type="text/babel">
+        var NotesList = React.createClass({
+        });
+    </script>
+</body>
+</html>
+
