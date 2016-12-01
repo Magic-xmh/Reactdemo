@@ -1,18 +1,63 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ReactDemo";
     Layout = null;
 }
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="~/Scripts/react.js"></script>
-    <script src="~/Scripts/react-dom.js"></script>
+<head>    
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <script src="~/Scripts/browser.min.js"></script>
-</head>
-<body>
-    <div id="example"></div>
+    <script>
+        /**定时器（10秒倒计时）**/
+        var countdown = 10;
+        var settimeoutdemo = function () {
+            document.getElementById("settime").innerText = countdown;
+            countdown--;
+            var timeout = setTimeout(function () {
+                settimeoutdemo();
+            }, 1000);            
+            if (countdown == -1) {                
+                document.getElementById("settime").innerText = "结束啦";
+                clearTimeout(timeout);
+            }
+        };
+    </script>
 
+    <script  type="text/javascript">
+        /**DIV拖拽**/
+        $(document).ready(function () {
+            $("#move").mousedown(function (e) {
+                $(this).css("cursor", "move");//光标设为移动的
+                var offset = $(this).offset();//DIV在页面的位置
+                var x = e.pageX - offset.left;//获得鼠标距离DIV左边界的值用于一会儿
+                var y = e.pageY - offset.top//获得鼠标距离DIV上边界的值用于一会儿
+               
+                $(document).bind("mousemove", function (e2) { //给mousemove绑定函数
+                    $("#move").stop();
+                    var _x = e2.pageX - x;//x移动的值
+                    var _y = e2.pageY - y//y移动的值
+                    $("#move").animate({
+                        left:_x+"px",top:_y+"px"
+                    },10);
+                });
+            });
+
+            $(document).mouseup(function () {
+                $("#move").css("cursor", "default");
+                $(this).unbind("mousemove");//移除mousemove的函数
+            });
+        });
+    </script>
+
+</head>
+<body onload="settimeoutdemo()">
+    <div id="example"></div>      
+    <span id="settime"></span>
+    <div id="move" style="position:absolute;top:10px;left:0px;width:500px;height:500px;background-color:black;">
+        
+    </div>
     <!--demo1-->
     @*<script type="text/babel">
         ReactDOM.render(
@@ -52,10 +97,55 @@
     </script>*@
 
     <!--demo4-->
-    <script type="text/babel">
+    @*<script type="text/babel">
         var NotesList = React.createClass({
+            render:function(){
+                return(
+                    <ol>
+                        {
+                            React.Children.map(this.props.children,function(e){
+                                return<li>{e}</li>;
+                            })
+                        }
+                    </ol>
+                );
+            }
         });
+
+        ReactDOM.render(
+            <NotesList>
+                <span>Hello</span>
+                <a>React</a>
+                <div>!!!</div>
+            </NotesList>,
+            document.getElementById("example")
+        );
+    </script>*@
+
+    <!-- demo5 -->
+    <script type="text/babel">
+        var Mytitle = React.createClass({
+            propTypes:{
+                title:React.PropTypes.string.isRequired,
+            },
+            render:function(){
+                return <h1>{this.props.title}</h1>;
+            }
+        });
+
+        ReactDOM.render(
+            <Mytitle title="123"/>,
+            document.getElementById("example")
+        );
     </script>
+
+    <!-- demo6 -->
+    <script type="text/babel">
+
+    </script>
+
+
+
 </body>
 </html>
 
