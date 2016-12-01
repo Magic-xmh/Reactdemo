@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "ModelDemo";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Modal</h2>
+<button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">弹出</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">这只是个标题</h4>
+            </div>
+            <div class="modal-body">这个是本体</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- modal -->
+
